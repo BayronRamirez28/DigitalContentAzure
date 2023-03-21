@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<div th:fragment="standard_modal" class="modal fade text-center"
+		id="myModal">
+		<div class="modal" tabindex="-1">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header danger">
+						<h5 class="modal-title" id="modalTitle">Alerta</h5>
+						<button type="button" class="btn-close" data-bs-dismiss="modal"
+							aria-label="Close"></button>
+					</div>
+					<div class="modal-body">
+						<span id="modalBody"></span>
+					</div>
+					<div class="modal-footer">
+						<a type="button" class="btn btn-secondary"
+							data-bs-dismiss="modal" th:href="@{/carrito}">Close</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div th:fragment="standard_modal2">
+		<div class="modal fade" id="myModal" tabindex="-1"
+			aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="modalTitle"></h5>
+						<button type="button" class="btn-close" data-bs-dismiss="modal"
+							aria-label="Close"></button>
+					</div>
+					<div class="modal-body" id="modalBody"></div>
+					<div class="modal-footer">
+						<a type="button" class="btn btn-secondary"
+							data-bs-dismiss="modal" href="/carrito">Close</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

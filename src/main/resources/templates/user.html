@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<meta charset="utf-8">
+<title>Digital Content</title>
+
+<!-- Bootstrap -->
+<link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet"
+	type="text/css">
+<!-- Logo Pestaña -->
+<link rel="icon" th:href="@{/imgs/LOGO1.png}" />
+<!-- Font Awesome -->
+<link th:href="@{/fontawesome/css/fontawesome.min.css}" rel="stylesheet">
+<link th:href="@{/fontawesome/css/brands.min.css}" rel="stylesheet">
+<link th:href="@{/fontawesome/css/solid.min.css}" rel="stylesheet">
+</head>
+<body>
+	<!-- HEADER -->
+
+	<nav th:replace="~{layouts/header :: header}">Header</nav>
+
+	<div class="container my-4 " id="scroll">
+
+			<th:block sec:authorize="hasAuthority('Administrador')">
+				<a class="btn btn-primary" th:href="@{/admin}">Opciones de Administrador</a>
+			</th:block>
+			<th:block sec:authorize="hasAnyAuthority('Domiciliario','Administrador')">
+				<a class="btn btn-primary" th:href="@{/dom/entregas}">Opciones de Domiciliario</a>
+			</th:block>
+	
+		<div class="row">
+
+
+			<table class="table table-dark table-striped">
+				<thead>
+					<th><h2>Datos de usuario</h2></th>
+					<th><a
+						th:href="@{'/registro/usuario/editar'+'/'+ ${user.idUsuario}}"
+						class="btn btn-success">Editar</a></th>
+				</thead>
+				<tbody>
+					<tr>
+						<th scope="row">Nombres</th>
+						<td th:object="${user}" th:text="${user.nombres}"></td>
+					</tr>
+					<tr>
+						<th scope="row">Apellidos</th>
+						<td th:object="${user}" th:text="${user.apellidos}"></td>
+					</tr>
+					<tr>
+						<th scope="row">Tipo Documento</th>
+						<td th:object="${user}" th:text="${user.tipoDocumento}"></td>
+					</tr>
+					<tr>
+						<th scope="row">Número de documento</th>
+						<td th:object="${user}" th:text="${user.numDocumento}"></td>
+					</tr>
+					<tr>
+						<th scope="row">Correo</th>
+						<td th:object="${user}" th:text="${user.correo}"></td>
+					</tr>
+					<tr>
+						<th scope="row">Teléfono</th>
+						<td th:object="${user}" th:text="${user.telefono}"></td>
+					</tr>
+					<tr>
+						<th scope="row">Dirección</th>
+						<td th:object="${user}" th:text="${user.direccion}"></td>
+					</tr>
+					<tr>
+						<th scope="row">Barrio</th>
+						<td th:object="${user}" th:text="${user.id_Barrio_fk.nombre}"></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<!-- FOOTER -->
+	<footer class="footer" th:replace="~{layouts/footer :: footer}">Footer</footer>
+</body>
+</html>

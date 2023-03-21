@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<!-- MenuBar -->
+
+	<div class="container my-4" th:fragment="botones">
+		<div class="row">
+			<div class="btn-group" role="group"
+				aria-label="Basic outlined example">
+				<a th:href="@{/mujer}" type="button" class="btn btn-dark">Mujer</a>
+				<a th:href="@{/nina}" type="button" class="btn btn-dark">Niña</a>
+				<a th:href="@{/hombre}" type="button" class="btn btn-dark">Hombre</a>
+				<a th:href="@{/nino}" type="button" class="btn btn-dark">Niño</a>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

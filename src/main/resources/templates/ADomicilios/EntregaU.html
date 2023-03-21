@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<title>Digital Content</title>
+
+<!-- Bootstrap -->
+<link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet"
+	type="text/css">
+<!-- Logo Pestaña -->
+<link rel="icon" th:href="@{/imgs/LOGO1.png}" />
+<!-- Font Awesome -->
+<link th:href="@{/fontawesome/css/fontawesome.min.css}" rel="stylesheet">
+<link th:href="@{/fontawesome/css/brands.min.css}" rel="stylesheet">
+<link th:href="@{/fontawesome/css/solid.min.css}" rel="stylesheet">
+<!-- DataTables -->
+<link rel="stylesheet" type="text/css"
+	th:href="@{/datatables/DataTables-1.12.1/css/dataTables.bootstrap5.min.css}" />
+</head>
+<body>
+	<!-- HEADER -->
+
+	<nav th:replace="~{layouts/header :: header}">Header</nav>
+	<!-- FORM -->
+
+	<div class="container my-4">
+		<div class="row justify-content-center">
+			<form id="formularioC" class="col-md-6 my-4 bg-light"
+				th:action="@{/dom/entrega}" th:object="${Entrega}" method="POST">
+				<figure class="text-center">
+                        <blockquote class="blockquote">
+                            <p>REGISTRAR ESTADO</p>
+                        </blockquote>
+                        <figcaption class="blockquote-footer">
+                            Actualiza el estado<cite title="Source Title"> si ya culminó la entrega</cite>
+                        </figcaption>
+                </figure>
+                <label>Numero de Pedido:</label>
+				<input type="text" class="form-control" readonly="readonly" th:field="*{idEntrega}" th:value="${Entrega.idEntrega}">
+				<br>
+				<label>Fecha Realizacion:</label>
+				<input type="date" class="form-control" th:field="*{fecha}" readonly="readonly" th:value="${Entrega.fecha}">
+				<br>
+				<label>**Estado**</label>
+				<select th:field="*{estado}" class="form-select">
+					<option value="Pendiente">PENDIENTE</option>
+					<option value="EnCamino">EN CAMINO</option>
+					<option value="Entregado">ENTREGADO</option>
+				</select>
+				<br>
+				<div class="box-footer">
+					<button class="btn btn-danger">Actualizar</button>	
+				</div>
+			</form>
+		</div>
+	</div>
+
+	<!-- FOOTER -->
+
+	<footer th:replace="~{layouts/footer :: footer}">Footer</footer>
+
+	<!-- Script Bootstrap -->
+	<script th:src="@{/bootstrap/js/bootstrap.min.js}"
+		crossorigin="anonymous"></script>
+	<!-- JQuery -->
+	<script type="text/javascript" th:src="@{/JQuery/jquery-3.6.1.min.js}"></script>
+	<!-- DataTables -->
+	<script type="text/javascript"
+		th:src="@{/datatables/DataTables-1.12.1/js/jquery.dataTables.min.js}"></script>
+	<script type="text/javascript"
+		th:src="@{/datatables/DataTables-1.12.1/js/dataTables.bootstrap5.min.js}"></script>
+	<script type="text/javascript"
+		th:src="@{/datatables/Buttons-2.3.4/js/dataTables.buttons.min.js}"></script>
+	<script type="text/javascript"
+		th:src="@{/datatables/JSZip-2.5.0/jszip.min.js}"></script>
+	<script type="text/javascript"
+		th:src="@{/datatables/pdfmake-0.1.36/pdfmake.min.js}"></script>
+	<script type="text/javascript"
+		th:src="@{/datatables/pdfmake-0.1.36/vfs_fonts.js}"></script>
+	<script type="text/javascript"
+		th:src="@{/datatables/Buttons-2.3.4/js/buttons.html5.min.js}"></script>
+	<!-- SCRIPT -->
+	<script type="text/javascript" th:src="@{/totalentrega.js}"></script>
+</body>
+</html>
+</body>
+</html>

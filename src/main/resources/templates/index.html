@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<meta charset="utf-8">
+<title>Digital Content</title>
+<!-- Bootstrap -->
+<link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet"
+	type="text/css">
+<!-- Logo Pestaña -->
+<link rel="icon" th:href="@{/imgs/LOGO1.png}" />
+<!-- Font Awesome -->
+<link th:href="@{/fontawesome/css/fontawesome.min.css}" rel="stylesheet">
+<link th:href="@{/fontawesome/css/brands.min.css}" rel="stylesheet">
+<link th:href="@{/fontawesome/css/solid.min.css}" rel="stylesheet">
+</head>
+<body>
+	<!-- HEADER -->
+
+	<nav th:replace="~{layouts/header :: header}">Header</nav>
+	
+	<div th:replace="~{layouts/carrucel :: caru}">Carrucel</div>
+	
+	<span class="ir-arriba icon-arrow-up2"><i class="fa-sharp fa-solid fa-arrow-up"></i></span>
+
+	<div th:replace="~{layouts/buttons :: botones}">botones</div>
+
+	<!-- CARDS -->
+
+	<div class="container my-4">
+		<div class="row" style="justify-content: center;">
+			<div class="card my-3 mx-4" style="width: 20rem;"
+				th:each="producto : ${productos}">
+				<img th:if="${producto.foto}"
+					th:src="@{'/cat/uploads/' + ${producto.foto}}"
+					style="width: 250px; height: 250px; margin: 0 auto;"
+					class="card-img-top my-3" alt="">
+				<hr>
+				<div class="card-body">
+					<h5 class="card-title" th:text="'$'+${producto.precio}"></h5>
+					<p class="card-text" th:text="${producto.nombre}"></p>
+					<div align="center">
+						<a th:href="@{'/detail-product'+'/'+${producto.idProducto}}"
+							class="btn btn-outline-success">Detalles</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<style>
+.card {
+	-webkit-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.14);
+	-moz-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.14);
+	box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.14);
+}
+
+.ir-arriba {
+	display:none;
+	padding:20px;
+	background:#024959;
+	font-size:20px;
+	color:white;
+	cursor:pointer;
+	position: fixed;
+	bottom:20px;
+	right:20px;
+}
+
+</style>
+	<!-- FOOTER -->
+
+	<footer th:replace="~{layouts/footer :: footer}">Footer</footer>
+
+	<div th:replace="~{layouts/Modals :: standard_modal}">Modal
+		estandarte</div>
+	<!-- JQuery -->
+	<script type="text/javascript" th:src="@{/JQuery/jquery-3.6.1.min.js}"></script>
+
+	<!-- Script Bootstrap -->
+	<script th:src="@{/bootstrap/js/bootstrap.min.js}"
+		crossorigin="anonymous"></script>
+	<script th:src="@{/bootstrap/js/bootstrap.bundle.min.js}"
+		crossorigin="anonymous"></script>
+		<script type="text/javascript" th:src="@{/volverarriba.js}"></script>
+</body>
+</html>

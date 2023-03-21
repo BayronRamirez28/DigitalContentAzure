@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<title>Digital Content</title>
+
+<!-- Bootstrap -->
+<link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet"
+	type="text/css">
+<!-- Logo Pestaña -->
+<link rel="icon" th:href="@{/imgs/LOGO1.png}" />
+<!-- Font Awesome -->
+<link th:href="@{/fontawesome/css/fontawesome.min.css}" rel="stylesheet">
+<link th:href="@{/fontawesome/css/brands.min.css}" rel="stylesheet">
+<link th:href="@{/fontawesome/css/solid.min.css}" rel="stylesheet">
+<!-- DataTables -->
+<link rel="stylesheet" type="text/css"
+	th:href="@{/datatables/DataTables-1.12.1/css/dataTables.bootstrap5.min.css}" />
+</head>
+<body>
+	<!-- HEADER -->
+
+	<nav th:replace="~{layouts/header :: header}">Header</nav>
+	
+	<span class="ir-arriba icon-arrow-up2"><i class="fa-sharp fa-solid fa-arrow-up"></i></span>
+	
+	<!-- SIDEBAR -->
+
+	<div class="container-fluid">
+		<div class="row flex-nowrap">
+
+			<div th:replace="~{layouts/Adminmenu :: menu}">Menú</div>
+			<div class="col py-3" style="width: 10px">
+				<!-- BUTTONS -->
+				<div class="container">
+					<div class="row my-4">
+						<div class="btn-group" role="group"
+							aria-label="Basic outlined example">
+							<a th:href="@{/admin/encamino}" type="button"
+								class="btn btn-dark">EN CAMINO</a> <a
+								th:href="@{/admin/pendiente}" type="button" class="btn btn-dark">PENDIENTE</a>
+							<a th:href="@{/admin/entregada}" type="button"
+								class="btn btn-dark">ENTREGADAS</a>
+						</div>
+					</div>
+				</div>
+				<!-- CARDS -->
+
+				<div class="container my-4">
+					<div class="row" style="justify-content: center;">
+						<div class="card my-3 mx-4" style="width: 30rem;"
+							th:each="entre : ${listaEn}">
+							<h3>[[${entre.estado}]]</h3>
+							<div class="card-body">
+								<h5>
+									Entrega #<span th:text="${entre.idEntrega}"></span>
+								</h5>
+								<h5>
+									Fecha: <span th:text="${entre.fecha}"></span>
+								</h5>
+								<div th:if="${entre.idCliente != null}">
+									<h5>
+										Domiciliario: <span
+											th:text="${entre.idCliente.nombres + ' ' + entre.idCliente.apellidos + ' #' + entre.idCliente.idUsuario}"></span>
+									</h5>
+								</div>
+								<hr>
+								<div th:with="orden2 =${entre.ordenCompra[0]}">
+									<div>
+										-Cliente: <span
+											th:text="${orden2.cliente.nombres+' '+orden2.cliente.apellidos}"></span>
+									</div>
+									<div>
+										-Telefono: <span th:text="${orden2.cliente.telefono}"></span>
+									</div>
+									<div>
+										-Direccion: <span th:text="${orden2.cliente.direccion}"></span>
+									</div>
+								</div>
+
+								<div th:each="orden : ${entre.ordenCompra}">
+									<h6>Producto</h6>
+									<div></div>
+									<div>
+										-Nombre: <span th:text="${orden.product}"></span> #<span
+											th:text="${orden.product.idProducto}"></span>
+									</div>
+									<div>
+										<input type="hidden" th:value="${orden.product.precio}"
+											class="precio"> <input type="hidden"
+											th:value="${orden.cantidad}" class="cant"> -Cantidad:
+										<span th:text="${orden.cantidad}"></span> unidades
+									</div>
+								</div>
+								<hr>
+								<div>TOTAL ENTREGA:</div>
+								<input class="form-control total" readonly="readonly"
+									type="text" id="total"> <br>
+								<div>
+									<a class="btn btn-outline-primary"
+										th:href="@{'/dom/entrega'+'/'+${entre.idEntrega}}">Actualizar</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+<style>
+.ir-arriba {
+	display:none;
+	padding:20px;
+	background:#024959;
+	font-size:20px;
+	color:white;
+	cursor:pointer;
+	position: fixed;
+	bottom:20px;
+	right:20px;
+}
+
+</style>
+	<!-- FOOTER -->
+
+	<footer th:replace="~{layouts/footer :: footer}">Footer</footer>
+
+	<!-- Script Bootstrap -->
+	<script th:src="@{/bootstrap/js/bootstrap.min.js}"
+		crossorigin="anonymous"></script>
+	<!-- JQuery -->
+	<script type="text/javascript" th:src="@{/JQuery/jquery-3.6.1.min.js}"></script>
+	<!-- DataTables -->
+	<script type="text/javascript"
+		th:src="@{/datatables/DataTables-1.12.1/js/jquery.dataTables.min.js}"></script>
+	<script type="text/javascript"
+		th:src="@{/datatables/DataTables-1.12.1/js/dataTables.bootstrap5.min.js}"></script>
+	<script type="text/javascript"
+		th:src="@{/datatables/Buttons-2.3.4/js/dataTables.buttons.min.js}"></script>
+	<script type="text/javascript"
+		th:src="@{/datatables/JSZip-2.5.0/jszip.min.js}"></script>
+	<script type="text/javascript"
+		th:src="@{/datatables/pdfmake-0.1.36/pdfmake.min.js}"></script>
+	<script type="text/javascript"
+		th:src="@{/datatables/pdfmake-0.1.36/vfs_fonts.js}"></script>
+	<script type="text/javascript"
+		th:src="@{/datatables/Buttons-2.3.4/js/buttons.html5.min.js}"></script>
+	<!-- SCRIPT -->
+	<script type="text/javascript" th:src="@{/totalentrega.js}"></script>
+	<script type="text/javascript" th:src="@{/volverarriba.js}"></script>
+</body>
+</html>
