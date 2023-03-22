@@ -42,7 +42,7 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: java-app
-          path: robot/tests/report.html
+          path: '${{ github.workspace }}/target/*.jar'
 
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
