@@ -29,7 +29,6 @@ jobs:
         with:
           name: java-app
           path: '${{ github.workspace }}/target/*.jar'
-          needs: build
 
   deploy:
     runs-on: ubuntu-latest
@@ -43,7 +42,7 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: java-app
-          needs: build
+          path: robot/tests/report.html
 
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
