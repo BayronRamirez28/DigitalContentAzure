@@ -42,7 +42,6 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: java-app
-          if: ${{ failure() }}
 
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
