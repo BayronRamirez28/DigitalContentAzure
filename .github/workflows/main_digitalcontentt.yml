@@ -42,7 +42,7 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: java-app     
-          path: my-artifact
+          path: path/to/artifacts
 
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
