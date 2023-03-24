@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v2
 
       - name: Set up Java version
         uses: actions/setup-java@v1
@@ -25,7 +25,7 @@ jobs:
         run: mvn clean install
 
       - name: Upload artifact for deployment job
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v2
         with:
           name: java-app
           path: '${{ github.workspace }}/target/*.jar'
@@ -39,15 +39,15 @@ jobs:
     
     steps:
       - name: Download artifact from build job
-        uses: actions/download-artifact@v1
+        uses: actions/download-artifact@v2
         with:
           name: java-app
 
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
-        uses: azure/webapps-deploy@v3
+        uses: azure/webapps-deploy@v2
         with:
           app-name: 'DigitalContentt'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_DB287E012BC2446CAD0F9FE28FDBFB02 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_C47B762662CE4D8897AF46F30275E6A4 }}
           package: '*.jar'
