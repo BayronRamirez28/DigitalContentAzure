@@ -32,6 +32,7 @@ jobs:
 
   deploy:
     runs-on: ubuntu-latest
+    needs: build
     environment:
       name: 'Production'
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
@@ -48,5 +49,5 @@ jobs:
         with:
           app-name: 'DigitalContentt'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_300D8E1F657B4B42A9BC60203B7C2BB7 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_DB287E012BC2446CAD0F9FE28FDBFB02 }}
           package: '*.jar'
