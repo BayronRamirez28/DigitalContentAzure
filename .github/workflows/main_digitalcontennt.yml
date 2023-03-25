@@ -49,5 +49,5 @@ jobs:
         with:
           app-name: 'DigitalContennt'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_AB2F1F2577EC44D4A57EC5E173D06DEE }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_D7E8F32ABD2849E080EC7E6780B0DB7B }}
           package: '*.war'
